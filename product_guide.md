@@ -94,24 +94,22 @@ The gateway forwards the following Modbus functions:
 
 | Service | Setting |
 | --- | --- |
-| Ethernet | DHCP enabled by default; static IPv4 configuration is available |
-| Wi-Fi | Configurable SSID, security mode, password, DHCP, and static IPv4 configuration |
+| Ethernet | DHCP disabled by default; static IPv4 configuration is active |
+| Wi-Fi | Station mode with DHCP enabled by default; configure an SSID and password before use |
 | Device Console | HTTP on port `80` |
 | Modbus TCP | Four configurable TCP listening ports; default ports `502` to `505` |
 | Time synchronization | SNTP against `216.239.35.0` (`time.google.com`) when the device has network access |
 
-The default Ethernet mode is DHCP. If DHCP is disabled, the stored static
-Ethernet settings are:
-
-| Setting | Default |
-| --- | --- |
-| IP address | `192.168.1.40` |
-| Netmask | `255.255.255.0` |
-| Gateway | `192.168.1.1` |
-
-> **NOTE:** With DHCP enabled, use the address assigned by your DHCP server to
-> connect to the gateway. The LCD shows the current Ethernet and Wi-Fi IP
-> addresses when connected.
+> **NOTE:**
+> - Out of the box, Ethernet DHCP is **disabled** and the device uses the
+>   **default** static IP address `192.168.1.40`. This placeholder makes the
+>   device reachable on first power-up; change it to match your network.
+> - When Ethernet DHCP is enabled, use the address assigned by your DHCP server
+>   instead.
+> - Wi-Fi is enabled in **Station** mode with DHCP enabled, but is not
+>   configured to join a network until you enter its SSID and password.
+> - A **network connection** is required for Device Console access, Modbus TCP
+>   communication, and time synchronization.
 
 <br><br>
 
@@ -159,9 +157,11 @@ Use the **Wi-Fi** group to connect the gateway to a wireless network.
 | Wifi DHCP | Enables or disables DHCP for Wi-Fi. |
 | Wifi IP, Netmask, Gateway | Static IPv4 settings used when Wi-Fi DHCP is disabled. |
 
-> **NOTE:** The default Wi-Fi security selection is `AUTO`. Enter the SSID and
-> password supplied by the network administrator, then restart the device and
-> confirm its IP address on the LCD.
+> **NOTE:** Wi-Fi is enabled in **Station** mode with DHCP enabled by default,
+> but it is not configured to join a network: the default SSID and password
+> are blank. Its displayed static IP address and gateway placeholders are both
+> `1.0.0.1`. Enter the SSID and password supplied by the network administrator,
+> then restart the device and confirm its IP address on the LCD.
 
 <a id="43-modbus-channels"></a>
 ### 4.3 Modbus channels [↑](#bookmarks "Back to Bookmarks")
@@ -239,15 +239,19 @@ Confirm the following with the field-device documentation:
 > **IMPORTANT:** Do not connect two devices with the same Modbus unit ID to
 > the same RTU bus.
 
+![Connecting the BP#02 sensor to the TPP2W(G2)](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_with_double_9_terminals_bp02.png)
+
 <a id="52-connect-the-network-and-power"></a>
 ### 5.2 Connect the network and power [↑](#bookmarks "Back to Bookmarks")
 
 Connect the RJ45 Ethernet port to the local network, or prepare the Wi-Fi
 network details. Then connect power to the gateway and allow it to boot.
 
-With Ethernet DHCP enabled, obtain the assigned IP address from the DHCP
-server or read it from the LCD. If Ethernet DHCP is disabled, use the configured
-static IP address instead.
+Ethernet DHCP is disabled by default, so connect using the configured static
+IP address. When DHCP is enabled, obtain the assigned address from the DHCP
+server or read it from the LCD instead.
+
+![Connecting the Ethernet cable and power adapter to the TPP2W(G2)](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_ethernet_power.png)
 
 <a id="53-find-the-device-and-open-the-device-console"></a>
 ### 5.3 Find the device and open the Device Console [↑](#bookmarks "Back to Bookmarks")
