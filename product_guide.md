@@ -251,22 +251,25 @@ device on the RS-485 bus in Tibbit socket 1.
 <a id="51-connect-the-modbus-rtu-devices"></a>
 ### 5.1 Connect the Modbus RTU devices [↑](#bookmarks "Back to Bookmarks")
 
-Before wiring, disconnect power from the gateway and the field device.
-Connect the RS-485 A/B lines from the field device to the Tibbit #05 installed
-in socket 1. If additional buses are required, use sockets 3, 5, and 7 for
-CH2, CH3, and CH4 respectively.
+The deployment steps use a Tibbo Modbus BP#02, a sensor for ambient
+temperature and relative humidity. The BP#02 is used only as an example;
+another compatible Modbus device can be connected instead.
 
-Confirm the following with the field-device documentation:
+> **IMPORTANT:** Before replacing a Modbus sensor or changing its wiring,
+> disconnect power from the device. Reconnect power only after the new sensor
+> and all wiring have been connected correctly.
 
-- RS-485 A/B polarity and any signal ground requirement.
-- Modbus RTU baud rate and no-parity serial format.
-- Modbus unit ID of every device on the bus.
-- Required termination and biasing for the bus topology.
+Connect the BP#02 to the TPP2W(G2) as shown below. Connect each wire to the
+terminal with the matching label: `VCC` to `VCC`, `GND` to `GND`, `Tx` to
+`Tx`, and `Rx` to `Rx`. When using a different Modbus device, follow its
+documentation for the required power and communication connections.
 
-> **IMPORTANT:** Do not connect two devices with the same Modbus unit ID to
-> the same RTU bus.
+> **TIP:** More Tibbo RS-485 Modbus sensor models are available [here](https://tibbo.com/store/rs485-modbus-sensors.html).
+
+<br>
 
 ![Connecting the BP#02 sensor to the TPP2W(G2)](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_with_double_9_terminals_bp02.png)
+
 
 <a id="52-connect-the-network-and-power"></a>
 ### 5.2 Connect the network and power [↑](#bookmarks "Back to Bookmarks")
