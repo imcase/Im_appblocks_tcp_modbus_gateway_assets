@@ -27,7 +27,7 @@
 - [5. Deployment example](#5-deployment-example)
   - [5.1 Connect the Modbus RTU devices](#51-connect-the-modbus-rtu-devices)
   - [5.2 Connect the network and power](#52-connect-the-network-and-power)
-  - [5.3 Find the device and open the Device Console](#53-find-the-device-and-open-the-device-console)
+  - [5.3 Connect to the Device Console](#53-connect-to-the-device-console)
   - [5.4 Configure a channel](#54-configure-a-channel)
   - [5.5 Test Modbus TCP to Modbus RTU forwarding](#55-test-modbus-tcp-to-modbus-rtu-forwarding)
 - [6. Commissioning checklist](#6-commissioning-checklist)
@@ -274,33 +274,17 @@ documentation for the required power and communication connections.
 <a id="52-connect-the-network-and-power"></a>
 ### 5.2 Connect the network and power [↑](#bookmarks "Back to Bookmarks")
 
-Connect the RJ45 Ethernet port to the local network, or prepare the Wi-Fi
-network details. Then connect power to the gateway and allow it to boot.
-
-Ethernet DHCP is disabled by default, so connect using the configured static
-IP address. When DHCP is enabled, obtain the assigned address from the DHCP
-server or read it from the LCD instead.
+Connect an Ethernet cable from the device's RJ45 port to your local network.
+Then connect the supplied power adapter to the device. The device starts when
+power is connected. Allow up to 20 seconds for the device to fully boot and
+become ready for use.
 
 ![Connecting the Ethernet cable and power adapter to the TPP2W(G2)](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_ethernet_power.png)
 
-<a id="53-find-the-device-and-open-the-device-console"></a>
-### 5.3 Find the device and open the Device Console [↑](#bookmarks "Back to Bookmarks")
+<a id="53-connect-to-the-device-console"></a>
+### 5.3 Connect to the Device Console [↑](#bookmarks "Back to Bookmarks")
 
-In a web browser, enter:
-
-```text
-http://<device-ip>
-```
-
-For example, when static Ethernet is configured with the factory default
-address:
-
-```text
-http://192.168.1.40
-```
-
-Sign in with credentials authorized for device administration before changing
-settings.
+Using your preferred web browser, navigate to [http://192.168.1.40](http://192.168.1.40). Shortly after, the **Home** page should be displayed (see [Section 4.1](#41-home)).
 
 <a id="54-configure-a-channel"></a>
 ### 5.4 Configure a channel [↑](#bookmarks "Back to Bookmarks")
