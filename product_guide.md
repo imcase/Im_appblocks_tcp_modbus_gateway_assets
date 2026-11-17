@@ -1,7 +1,7 @@
 
 ---
 > **Firmware:** `bp_modbus_gateway_lcd_v11` v1.0.7  
-> **Platform:** Tibbo TPP2W(G2) in a TPB2 enclosure
+> **Platform:** Tibbo TPP2W(G2) in a TPB2L(G2) enclosure
 
 <br>
 
@@ -13,10 +13,12 @@
 - [2. Hardware and interfaces](#2-hardware-and-interfaces)
 - [3. Network configuration and services](#3-network-configuration-and-services)
 - [4. Device Console](#4-device-console)
-  - [4.1 General](#41-general)
-  - [4.2 Wi-Fi](#42-wi-fi)
-  - [4.3 Modbus channels](#43-modbus-channels)
-  - [4.4 Reboot and initialize settings](#44-reboot-and-initialize-settings)
+  - [4.1 Home](#41-home)
+  - [4.2 Settings](#42-settings)
+    - [4.2.1 General](#421-general)
+    - [4.2.2 Wi-Fi](#422-wi-fi)
+    - [4.2.3 Modbus channels](#423-modbus-channels)
+    - [4.2.4 Reboot and initialize settings](#424-reboot-and-initialize-settings)
 - [5. Deployment example](#5-deployment-example)
   - [5.1 Connect the Modbus RTU devices](#51-connect-the-modbus-rtu-devices)
   - [5.2 Connect the network and power](#52-connect-the-network-and-power)
@@ -48,7 +50,6 @@ requests without a request from a Modbus TCP client.
 
 ![Modbus TCP client to four-channel Modbus RTU gateway flow](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/modbus_tcp_rtu_gateway_flow.png)
 
-<br><br>
 
 ---
 
@@ -58,6 +59,7 @@ requests without a request from a Modbus TCP client.
 | Item | Detail |
 | --- | --- |
 | Controller | Tibbo TPP2W(G2) Tibbo Project PCB |
+| Enclosure | TPB2L(G2), DIN-rail mounting kit, vibration-proof kit |
 | Network | On-board 10/100 Base-T Ethernet with RJ45 |
 | Wireless network | WA2000 Wi-Fi module |
 | Field interfaces | Four Tibbit #05 RS-485 ports in sockets 1, 3, 5, and 7 |
@@ -70,8 +72,6 @@ requests without a request from a Modbus TCP client.
 | MD button | Provides an audible indication when pressed; it does not reset settings in this firmware |
 | RST button | Restarts the device |
 
-<br>
-
 <br><br>
 
 ---
@@ -81,18 +81,23 @@ requests without a request from a Modbus TCP client.
 
 | Service | Setting |
 | --- | --- |
-| Ethernet | DHCP disabled by default; static IPv4 configuration is active |
-| Wi-Fi | Station mode with DHCP enabled by default; configure an SSID and password before use |
+| Ethernet | static IP/netmask/gateway, or DHCP  |
+| Wi-Fi | Station mode; DHCP or static IP/netmask/gateway; SSID, security type, and password |
 | Device Console | HTTP on port `80` |
-| Modbus TCP | Four configurable TCP listening ports; default ports `502` to `505` |
-| Time synchronization | SNTP against `216.239.35.0` (`time.google.com`) when the device has network access |
+| Modbus TCP | Four configurable TCP listening ports; default ports `502`, `503`, `504`,`505` |
+| Time sync | SNTP against 216.239.35.0 (time.google.com), applied with the configured time zone |
+| Device Console | HTTP, port 80, 3 concurrent connections |
 
-> **NOTE:**
+<br>
+
+> **Ethernet:**
 > - Out of the box, Ethernet DHCP is **disabled** and the device uses the
 >   **default** static IP address `192.168.1.40`. This placeholder makes the
 >   device reachable on first power-up; change it to match your network.
 > - When Ethernet DHCP is enabled, use the address assigned by your DHCP server
 >   instead.
+
+> **Wi-Fi:**
 > - Wi-Fi is enabled in **Station** mode with DHCP enabled, but is not
 >   configured to join a network until you enter its SSID and password.
 > - A **network connection** is required for Device Console access, Modbus TCP
@@ -108,50 +113,57 @@ requests without a request from a Modbus TCP client.
 The browser-based configuration interface is called the **Device Console**.
 Open `http://<device-ip>` in a supported web browser.
 
-> **Reminder:** Restart the device after changing network, port, or RTU
-> settings. This ensures that the network services and Modbus channels start
-> with the new configuration.
+> The browser-based configuration interface is called the **Device Console**. It
+> may also be referred to as the Web Console in AppBlocks documentation.
 
-<a id="41-general"></a>
-### 4.1 General [↑](#bookmarks "Back to Bookmarks")
+<br>
 
-Use the **General** group to configure the Ethernet connection and device
-identity.
+<a id="41-home"></a>
+### 4.1 Home [↑](#bookmarks "Back to Bookmarks")
 
-| Setting | Meaning |
-| --- | --- |
-| Ethernet DHCP | Enables or disables DHCP for Ethernet. |
-| Ethernet IP | Static IPv4 address used when Ethernet DHCP is disabled. |
-| Ethernet Netmask | Netmask for the static Ethernet address. |
-| Ethernet Gateway | Default gateway for the static Ethernet address. |
-| Device Name | Optional device name displayed by the Device Console. |
-| Owner Name | Optional owner identifier. |
+On the **Home** page, general gateway information is displayed.
 
-> **NOTE:** Changing network settings can interrupt the current Device Console
-> session. If you assign a new static address, reconnect using that address
-> after the device restarts.
+![Device Console Home page](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_webconsole_home.png)
 
-<a id="42-wi-fi"></a>
-### 4.2 Wi-Fi [↑](#bookmarks "Back to Bookmarks")
+> **NOTE:**
+> - Select **Refresh** to update the displayed information.
+> - Use **Change** to adjust the displayed device time settings when required.
 
-Use the **Wi-Fi** group to connect the gateway to a wireless network.
+<br>
 
-| Setting | Meaning |
-| --- | --- |
-| Wifi AP SSID | Name of the wireless access point. |
-| Wifi Security | Security mode used by the access point. |
-| Wifi Password | Wi-Fi password or passphrase. |
-| Wifi DHCP | Enables or disables DHCP for Wi-Fi. |
-| Wifi IP, Netmask, Gateway | Static IPv4 settings used when Wi-Fi DHCP is disabled. |
+<a id="42-settings"></a>
+### 4.2 Settings [↑](#bookmarks "Back to Bookmarks")
 
-> **NOTE:** Wi-Fi is enabled in **Station** mode with DHCP enabled by default,
-> but it is not configured to join a network: the default SSID and password
-> are blank. Its displayed static IP address and gateway placeholders are both
-> `1.0.0.1`. Enter the SSID and password supplied by the network administrator,
-> then restart the device and confirm its IP address on the LCD.
+The **Settings** tab contains the General, Wi-Fi, Modbus channel, and system
+configuration groups.
 
-<a id="43-modbus-channels"></a>
-### 4.3 Modbus channels [↑](#bookmarks "Back to Bookmarks")
+<a id="421-general"></a>
+#### 4.2.1 General [↑](#bookmarks "Back to Bookmarks")
+
+In the **General** group, DHCP can be enabled or a static Ethernet IP address,
+netmask, and gateway can be configured.
+
+![Device Console General settings](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_general.png)
+
+> **NOTE:**
+> - When DHCP is enabled, the static Ethernet address fields are **Unavailable**.
+> - DHCP may assign a different IP address and interrupt your Device Console connection.
+> - To keep the device reachable at a known address, a **static** IP address is recommended.
+
+<a id="422-wi-fi"></a>
+#### 4.2.2 Wi-Fi [↑](#bookmarks "Back to Bookmarks")
+
+Wi-Fi is available on the `TCP Modbus Gateway`. To connect to an existing
+wireless network, the correct SSID, security type, and password must be
+provided.
+
+> DHCP can be used, or a static IP address, netmask, and gateway can be
+> configured.
+
+![Device Console Wi-Fi settings](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_wifi.png)
+
+<a id="423-modbus-channels"></a>
+#### 4.2.3 Modbus channels [↑](#bookmarks "Back to Bookmarks")
 
 The Device Console has one configuration group for each channel: **CH1**,
 **CH2**, **CH3**, and **CH4**.
@@ -183,8 +195,8 @@ For each channel, configure:
 > listening port. The TCP port identifies the RTU bus; the Modbus **unit ID**
 > in each request identifies the field device on that bus.
 
-<a id="44-reboot-and-initialize-settings"></a>
-### 4.4 Reboot and initialize settings [↑](#bookmarks "Back to Bookmarks")
+<a id="424-reboot-and-initialize-settings"></a>
+#### 4.2.4 Reboot and initialize settings [↑](#bookmarks "Back to Bookmarks")
 
 Use the Device Console system controls to restart the device or initialize its
 stored settings. These operations require administrator access.
