@@ -28,6 +28,10 @@
   - [5.1 Connect the Modbus RTU devices](#51-connect-the-modbus-rtu-devices)
   - [5.2 Connect the network and power](#52-connect-the-network-and-power)
   - [5.3 Connect to the Device Console](#53-connect-to-the-device-console)
+  - [5.4 Download TCP-to-Modbus Test Software](#54-download-tcp-to-modbus-test-software)
+  - [5.5 Configure Test Software](#55-configure-test-software)
+  - [5.6 Start Test Software](#56-start-test-software)
+  - [5.7 Check Result In Test Software](#57-check-result-in-test-software)
   - [5.4 Configure a channel](#54-configure-a-channel)
   - [5.5 Test Modbus TCP to Modbus RTU forwarding](#55-test-modbus-tcp-to-modbus-rtu-forwarding)
 - [6. Commissioning checklist](#6-commissioning-checklist)
@@ -176,7 +180,9 @@ The Device Console has one configuration group for each channel: **CH1**,
 
 The **CH1** configuration group is shown below.
 
-> **NOTE:** **CH2**, **CH3**, and **CH4** are configured in the same way, each with its own listening port and RTU settings.
+> **NOTE:**
+> - Channels **CH2**, **CH3**, and **CH4** are configured in the same way, each with its own listening port and RTU settings.
+> - All four channels can be configured to meet the requirements of the installation.
 
 ![Device Console CH1 settings](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_ch1.png)
 
@@ -286,29 +292,17 @@ become ready for use.
 
 Using your preferred web browser, navigate to [http://192.168.1.40](http://192.168.1.40). Shortly after, the **Home** page should be displayed (see [Section 4.1](#41-home)).
 
-<a id="54-configure-a-channel"></a>
-### 5.4 Configure a channel [↑](#bookmarks "Back to Bookmarks")
+<a id="54-download-tcp-to-modbus-test-software"></a>
+### 5.4 Download TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
 
-For a device wired to socket 1:
+Download and install the TCP-to-Modbus test software before continuing.
 
-1. Open the **CH1** group in the Device Console.
-2. Set **Channel 1 Listening Port**. Use `502` unless your network requires a
-   different port.
-3. Set **Tibbit 05 Baud Rate** to the baud rate used by the field device.
-4. Confirm that the field device uses no parity, as required by this firmware.
-5. Save the settings and restart the gateway.
-6. After the reboot, confirm that the gateway is reachable at its configured
-   network address.
+<a id="55-configure-test-software"></a>
+### 5.5 Configure Test Software [↑](#bookmarks "Back to Bookmarks")
 
-Repeat these steps for CH2, CH3, and CH4 as needed. Use a different TCP port
-for each enabled channel.
-
-<a id="55-test-modbus-tcp-to-modbus-rtu-forwarding"></a>
-### 5.5 Test Modbus TCP to Modbus RTU forwarding [↑](#bookmarks "Back to Bookmarks")
-
-Configure your Modbus TCP client with the gateway's IP address and the port of
-the required channel. For CH1, use port `502`. Set the client unit ID to the
-Modbus address of the RTU field device.
+Configure the test software with the gateway's IP address, the TCP listening
+port for the required channel, and the Modbus unit ID of the RTU field device.
+For CH1, use port `502`.
 
 The gateway forwards the following Modbus functions between the channel's TCP
 listening port and associated RS-485 bus:
@@ -326,6 +320,15 @@ listening port and associated RS-485 bus:
 > **IMPORTANT:** A Modbus write sent through the gateway changes the connected
 > field device. Enable and use write functions only for approved control points
 > and only when it is safe to change the device state.
+
+<a id="56-start-test-software"></a>
+### 5.6 Start Test Software [↑](#bookmarks "Back to Bookmarks")
+
+Start the test software and connect to the configured gateway IP address and
+TCP port.
+
+<a id="57-check-result-in-test-software"></a>
+### 5.7 Check Result In Test Software [↑](#bookmarks "Back to Bookmarks")
 
 For example, read one holding register at address `0` from unit ID `1` through
 CH1. The exact client command depends on the Modbus tool in use; configure it
