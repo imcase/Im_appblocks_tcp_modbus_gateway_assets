@@ -36,30 +36,17 @@
 The Tibbo Modbus Gateway connects a Modbus TCP client on an Ethernet or Wi-Fi
 network to up to four independent Modbus RTU buses. It is intended for systems
 where a SCADA system, PLC, HMI, or other Modbus TCP master must communicate
-with serial Modbus field devices.
+with serial Modbus field devices. It operates as a **Modbus TCP-to-RTU
+pass-through gateway**.
 
 Each TCP listening port is assigned to one RTU channel. When a Modbus TCP
 client sends a request to a channel's port, the gateway forwards the request
 to the associated RS-485 bus using the original Modbus unit ID. The reply from
-the RTU device is returned to the TCP client.
+the RTU device is returned to the TCP client. The gateway does not
+independently poll field devices, store register values, or initiate Modbus
+requests without a request from a Modbus TCP client.
 
 ![Modbus TCP client to four-channel Modbus RTU gateway flow](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/modbus_tcp_rtu_gateway_flow.png)
-
-The gateway forwards the following Modbus functions:
-
-| Function code | Function |
-| --- | --- |
-| `01` | Read Coils |
-| `02` | Read Discrete Inputs |
-| `03` | Read Holding Registers |
-| `04` | Read Input Registers |
-| `05` | Write Single Coil |
-| `06` | Write Single Register |
-| `10` | Write Multiple Registers |
-
-> **IMPORTANT:** A Modbus write sent through the gateway changes the connected
-> field device. Enable and use write functions only for approved control points
-> and only when it is safe to change the device state.
 
 <br><br>
 
@@ -74,16 +61,16 @@ The gateway forwards the following Modbus functions:
 | Network | On-board 10/100 Base-T Ethernet with RJ45 |
 | Wireless network | WA2000 Wi-Fi module |
 | Field interfaces | Four Tibbit #05 RS-485 ports in sockets 1, 3, 5, and 7 |
+| Field connector | 2× Tibbit #20 (9-terminal block) |
+| Power | Tibbit #10 power supply module in socket 11 |
+| Power adapter | APR-P0008 adapter |
+| Storage | 1 MB AT45DB081E dataflash, LittleFS file system |
 | Display | 320 × 240 LCD showing network and channel status |
-| Status indication | On-board red/green LEDs and LCD channel indicators |
+| Status LEDs | On-board red/green LEDs and LCD channel indicators |
 | MD button | Provides an audible indication when pressed; it does not reset settings in this firmware |
 | RST button | Restarts the device |
 
 <br>
-
-> **NOTE:** Install the required Tibbit #05 RS-485 interfaces before powering
-> the device. Follow the connected field device's documentation for RS-485
-> wiring, polarity, termination, biasing, power, and serial parameters.
 
 <br><br>
 
@@ -295,6 +282,23 @@ for each enabled channel.
 Configure your Modbus TCP client with the gateway's IP address and the port of
 the required channel. For CH1, use port `502`. Set the client unit ID to the
 Modbus address of the RTU field device.
+
+The gateway forwards the following Modbus functions between the channel's TCP
+listening port and associated RS-485 bus:
+
+| Function code | Function |
+| --- | --- |
+| `01` | Read Coils |
+| `02` | Read Discrete Inputs |
+| `03` | Read Holding Registers |
+| `04` | Read Input Registers |
+| `05` | Write Single Coil |
+| `06` | Write Single Register |
+| `10` | Write Multiple Registers |
+
+> **IMPORTANT:** A Modbus write sent through the gateway changes the connected
+> field device. Enable and use write functions only for approved control points
+> and only when it is safe to change the device state.
 
 For example, read one holding register at address `0` from unit ID `1` through
 CH1. The exact client command depends on the Modbus tool in use; configure it
