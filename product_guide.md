@@ -18,7 +18,12 @@
     - [4.2.1 General](#421-general)
     - [4.2.2 Wi-Fi](#422-wi-fi)
     - [4.2.3 Modbus channels](#423-modbus-channels)
-    - [4.2.4 Reboot and initialize settings](#424-reboot-and-initialize-settings)
+  - [4.3 Log](#43-log)
+    - [4.3.1 Debug](#431-debug)
+    - [4.3.2 Log](#432-log)
+  - [4.4 System](#44-system)
+    - [4.4.1 Commands](#441-commands)
+    - [4.4.2 Time](#442-time)
 - [5. Deployment example](#5-deployment-example)
   - [5.1 Connect the Modbus RTU devices](#51-connect-the-modbus-rtu-devices)
   - [5.2 Connect the network and power](#52-connect-the-network-and-power)
@@ -168,47 +173,67 @@ provided.
 The Device Console has one configuration group for each channel: **CH1**,
 **CH2**, **CH3**, and **CH4**.
 
-| Channel | Default TCP listening port | Tibbit #05 socket | Default RTU baud rate |
-| --- | ---: | ---: | ---: |
-| CH1 | `502` | 1 | 38,400 bps |
-| CH2 | `503` | 3 | 38,400 bps |
-| CH3 | `504` | 5 | 38,400 bps |
-| CH4 | `505` | 7 | 38,400 bps |
+The **CH1** configuration group is shown below.
 
-For each channel, configure:
+![Device Console CH1 settings](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_ch1.png)
 
-| Setting | Meaning |
-| --- | --- |
-| Listening Port | TCP port on which the gateway accepts Modbus TCP requests for that channel. |
-| Tibbit 05 Baud Rate | RS-485 bit rate. Select the rate used by the connected RTU devices. |
-| Tibbit 05 Flow Control | Presented in the Device Console. |
-| Tibbit 05 Parity | Presented in the Device Console. |
-| Tibbit 05 Data Bits | Presented in the Device Console. |
+> **CH2**, **CH3**, and **CH4** are configured in the same way, each
+> with its own listening port and RTU settings.
 
-> **IMPORTANT — current firmware limitation:** Firmware v1.0.7 applies the
-> selected **baud rate** when it starts each RTU channel. Although the console
-> also displays flow-control, parity, and data-bit fields, this firmware does
-> not apply those fields to the active serial interface; RTU operation uses
-> no parity. Match the connected devices accordingly.
 
-> **NOTE:** A channel accepts Modbus TCP requests only on its configured
-> listening port. The TCP port identifies the RTU bus; the Modbus **unit ID**
-> in each request identifies the field device on that bus.
+<a id="43-log"></a>
+### 4.3 Log [↑](#bookmarks "Back to Bookmarks")
 
-<a id="424-reboot-and-initialize-settings"></a>
-#### 4.2.4 Reboot and initialize settings [↑](#bookmarks "Back to Bookmarks")
+On the Log page, device log messages stored in Flash are shown in the following groups:
 
-Use the Device Console system controls to restart the device or initialize its
-stored settings. These operations require administrator access.
+- Debug
+- Log
+
+> For each group, the entries show a timestamp and recorded value.
+
+<a id="431-debug"></a>
+#### 4.3.1 Debug [↑](#bookmarks "Back to Bookmarks")
+
+![Device Console Debug logs](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_log_debug.png)
+
+<a id="432-log"></a>
+#### 4.3.2 Log [↑](#bookmarks "Back to Bookmarks")
+
+![Device Console logs](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_log_log.png)
+
+<a id="44-system"></a>
+### 4.4 System [↑](#bookmarks "Back to Bookmarks")
+
+The **System** tab contains the **Commands** and **Time** groups.
+
+<a id="441-commands"></a>
+#### 4.4.1 Commands [↑](#bookmarks "Back to Bookmarks")
+
+Let's take a look at the **Commands** group first. It provides controls to
+restart the device or initialize its stored settings.
 
 - **Reboot:** Restarts the gateway and applies the stored network and channel
   configuration.
 - **Initialize Settings:** Restores the application settings to their default
-  values. Reboot the device afterward.
+  values. **A reboot is Required**.
 
-> **NOTE:** The on-board MD button is not a factory-reset control in this
-> firmware. Use **Initialize Settings** in the Device Console when a settings
-> reset is required.
+![Device Console System Commands group](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_system_commands.png)
+
+<a id="442-time"></a>
+#### 4.4.2 Time [↑](#bookmarks "Back to Bookmarks")
+
+The **Time** group shows the device time, time zone, daylight-saving status,
+and last SNTP synchronization time.
+
+The following controls are available:
+
+- **Change:** Sets the device time manually.
+- **Set to This Computer's Time:** Sets the device time from the computer
+  running the Device Console.
+- **Sync with SNTP Server:** Synchronizes the device time with the configured
+  SNTP server.
+
+![Device Console System Time group](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_system_time.png)
 
 <br><br>
 
