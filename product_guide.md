@@ -118,6 +118,7 @@ requests without a request from a Modbus TCP client.
 The browser-based configuration interface is called the **Device Console**.
 Open `http://<device-ip>` in a supported web browser.
 
+> **NOTE:**
 > The browser-based configuration interface is called the **Device Console**. It
 > may also be referred to as the Web Console in AppBlocks documentation.
 
@@ -128,7 +129,7 @@ Open `http://<device-ip>` in a supported web browser.
 
 On the **Home** page, general gateway information is displayed.
 
-![Device Console Home page](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_webconsole_home.png)
+![Device Console Home page](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_home_rev2.png)
 
 > **NOTE:**
 > - Select **Refresh** to update the displayed information.
@@ -162,8 +163,8 @@ Wi-Fi is available on the `TCP Modbus Gateway`. To connect to an existing
 wireless network, the correct SSID, security type, and password must be
 provided.
 
-> DHCP can be used, or a static IP address, netmask, and gateway can be
-> configured.
+> **NOTE:**
+> DHCP can be used, or a static IP address, netmask, and gateway can be configured.
 
 ![Device Console Wi-Fi settings](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_wifi.png)
 
@@ -175,11 +176,11 @@ The Device Console has one configuration group for each channel: **CH1**,
 
 The **CH1** configuration group is shown below.
 
+> **NOTE:** **CH2**, **CH3**, and **CH4** are configured in the same way, each with its own listening port and RTU settings.
+
 ![Device Console CH1 settings](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_ch1.png)
 
-> **CH2**, **CH3**, and **CH4** are configured in the same way, each
-> with its own listening port and RTU settings.
-
+<br>
 
 <a id="43-log"></a>
 ### 4.3 Log [↑](#bookmarks "Back to Bookmarks")
@@ -189,7 +190,7 @@ On the Log page, device log messages stored in Flash are shown in the following 
 - Debug
 - Log
 
-> For each group, the entries show a timestamp and recorded value.
+> **NOTE:** For each group, the entries show a timestamp and recorded value.
 
 <a id="431-debug"></a>
 #### 4.3.1 Debug [↑](#bookmarks "Back to Bookmarks")
@@ -232,6 +233,8 @@ The following controls are available:
   running the Device Console.
 - **Sync with SNTP Server:** Synchronizes the device time with the configured
   SNTP server.
+
+> **NOTE:** If Sync with SNTP Server does not succeed, check the device’s network connection and make sure it has internet access.
 
 ![Device Console System Time group](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_system_time.png)
 
