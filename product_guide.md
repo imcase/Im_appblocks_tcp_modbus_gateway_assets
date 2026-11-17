@@ -28,12 +28,13 @@
   - [5.1 Connect the Modbus RTU devices](#51-connect-the-modbus-rtu-devices)
   - [5.2 Connect the network and power](#52-connect-the-network-and-power)
   - [5.3 Connect to the Device Console](#53-connect-to-the-device-console)
-  - [5.4 Download TCP-to-Modbus Test Software](#54-download-tcp-to-modbus-test-software)
-  - [5.5 Configure Test Software](#55-configure-test-software)
-  - [5.6 Start Test Software](#56-start-test-software)
-  - [5.7 Check Result In Test Software](#57-check-result-in-test-software)
-  - [5.4 Configure a channel](#54-configure-a-channel)
-  - [5.5 Test Modbus TCP to Modbus RTU forwarding](#55-test-modbus-tcp-to-modbus-rtu-forwarding)
+  - [5.4 Configure General](#54-configure-network-in-general)
+  - [5.5 Configure Wi-Fi](#55-configure-wi-fi)
+  - [5.6 Configure Channels](#56-configure-channels)
+  - [5.7 Download TCP-to-Modbus Test Software](#57-download-tcp-to-modbus-test-software)
+  - [5.8 Configure Test Software](#58-configure-test-software)
+  - [5.9 Start Test Software](#59-start-test-software)
+  - [5.10 Check Result In Test Software](#510-check-result-in-test-software)
 - [6. Commissioning checklist](#6-commissioning-checklist)
 - [7. Troubleshooting](#7-troubleshooting)
 
@@ -287,28 +288,60 @@ become ready for use.
 
 ![Connecting the Ethernet cable and power adapter to the TPP2W(G2)](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_ethernet_power.png)
 
+<br>
+
 <a id="53-connect-to-the-device-console"></a>
 ### 5.3 Connect to the Device Console [↑](#bookmarks "Back to Bookmarks")
 
 Using your preferred web browser, navigate to [http://192.168.1.40](http://192.168.1.40). Shortly after, the **Home** page should be displayed (see [Section 4.1](#41-home)).
 
-<a id="54-download-tcp-to-modbus-test-software"></a>
-### 5.4 Download TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
+<br>
+
+<a id="54-configure-network-in-general"></a>
+### 5.4 Configure General [↑](#bookmarks "Back to Bookmarks")
+
+In the **General** group, configure the Ethernet connection for the local
+network.
+
+> **NOTE:**
+> - This example uses the default Ethernet configuration.
+> - If changes are required, see [Section 4.2.1](#421-general).
+
+<br>
+
+<a id="55-configure-wi-fi"></a>
+### 5.5 Configure Wi-Fi [↑](#bookmarks "Back to Bookmarks")
+
+In the **Wi-Fi** group, configure the wireless connection as required for the
+installation.
+
+> **NOTE:**
+> - This Ethernet-based example leaves the default Wi-Fi configuration unchanged.
+> - If changes are required, see [Section 4.2.2](#422-wi-fi).
+
+<br>
+
+<a id="56-configure-channels"></a>
+### 5.6 Configure Channels [↑](#bookmarks "Back to Bookmarks")
+
+Configure the required Modbus TCP-to-RTU channels for the installation.
+
+> **NOTE:**
+> - This example uses the default channel configuration.
+> - If changes are required, see [Section 4.2.3](#423-modbus-channels).
+
+<br>
+
+<a id="57-download-tcp-to-modbus-test-software"></a>
+### 5.7 Download TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
 
 Download and install the TCP-to-Modbus test software before continuing.
-
-<a id="55-configure-test-software"></a>
-### 5.5 Configure Test Software [↑](#bookmarks "Back to Bookmarks")
-
-Configure the test software with the gateway's IP address, the TCP listening
-port for the required channel, and the Modbus unit ID of the RTU field device.
-For CH1, use port `502`.
 
 The gateway forwards the following Modbus functions between the channel's TCP
 listening port and associated RS-485 bus:
 
 | Function code | Function |
-| --- | --- |
+| :------------ | :----------------------- |
 | `01` | Read Coils |
 | `02` | Read Discrete Inputs |
 | `03` | Read Holding Registers |
@@ -321,14 +354,27 @@ listening port and associated RS-485 bus:
 > field device. Enable and use write functions only for approved control points
 > and only when it is safe to change the device state.
 
-<a id="56-start-test-software"></a>
-### 5.6 Start Test Software [↑](#bookmarks "Back to Bookmarks")
+<br>
+
+<a id="58-configure-test-software"></a>
+### 5.8 Configure Test Software [↑](#bookmarks "Back to Bookmarks")
+
+Configure the test software with the gateway's IP address, the TCP listening
+port for the required channel, and the Modbus unit ID of the RTU field device.
+For CH1, use port `502`.
+
+<br>
+
+<a id="59-start-test-software"></a>
+### 5.9 Start Test Software [↑](#bookmarks "Back to Bookmarks")
 
 Start the test software and connect to the configured gateway IP address and
 TCP port.
 
-<a id="57-check-result-in-test-software"></a>
-### 5.7 Check Result In Test Software [↑](#bookmarks "Back to Bookmarks")
+<br>
+
+<a id="510-check-result-in-test-software"></a>
+### 5.10 Check Result In Test Software [↑](#bookmarks "Back to Bookmarks")
 
 For example, read one holding register at address `0` from unit ID `1` through
 CH1. The exact client command depends on the Modbus tool in use; configure it
