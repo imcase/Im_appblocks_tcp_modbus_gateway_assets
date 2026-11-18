@@ -1,7 +1,7 @@
 
 ---
 > **Firmware:** `bp_modbus_gateway_lcd_v11` v1.0.7  
-> **Platform:** Tibbo TPP2W(G2) in a TPB2L(G2) enclosure
+> **Platform:** Tibbo TPP2W(G2) in a TPB2L enclosure
 
 <br>
 
@@ -39,6 +39,7 @@
   - [5.9 Configure TCP-to-Modbus Test Software](#59-configure-tcp-to-modbus-test-software)
   - [5.10 Start TCP-to-Modbus Test Software](#510-start-tcp-to-modbus-test-software)
   - [5.11 Check Result In TCP-to-Modbus Test Software](#511-check-result-in-tcp-to-modbus-test-software)
+  - [5.12 LCD Status](#512-lcd-status)
 - [6. Commissioning checklist](#6-commissioning-checklist)
 - [7. Troubleshooting](#7-troubleshooting)
 
@@ -73,7 +74,7 @@ requests without a request from a Modbus TCP client.
 | Item | Detail |
 | --- | --- |
 | Controller | Tibbo TPP2W(G2) Tibbo Project PCB |
-| Enclosure | TPB2L(G2), DIN-rail mounting kit, vibration-proof kit |
+| Enclosure | TPB2L, DIN-rail mounting kit, vibration-proof kit |
 | Network | On-board 10/100 Base-T Ethernet with RJ45 |
 | Wireless network | WA2000 Wi-Fi module |
 | Field interfaces | Four Tibbit #05 RS-485 ports in sockets 1, 3, 5, and 7 |
@@ -161,7 +162,6 @@ netmask, and gateway can be configured.
 ![Device Console General settings](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_general.png)
 
 > **NOTE:**
-> - When DHCP is enabled, the static Ethernet address fields are **Unavailable**.
 > - DHCP may assign a different IP address and interrupt your Device Console connection.
 > - To keep the device reachable at a known address, a **static** IP address is recommended.
 
@@ -196,10 +196,12 @@ The **CH1** configuration group is shown below.
 <a id="43-log"></a>
 ### 4.3 Log [↑](#bookmarks "Back to Bookmarks")
 
-On the Log page, device log messages stored in Flash are shown in the following groups:
+On the Log page, device log messages stored in Flash are shown in the
+following groups:
 
-- Debug
-- Log
+- **Debug:** Detailed runtime diagnostic messages, including startup, network,
+  storage, SNTP, and Modbus communication events and errors.
+- **Log:** Reboot logs.
 
 > **NOTE:** For each group, the entries show a timestamp and recorded value.
 
@@ -336,35 +338,17 @@ their default values.
 <a id="56-configure-channels"></a>
 ### 5.6 Configure Channels [↑](#bookmarks "Back to Bookmarks")
 
-Configure CH1 and CH2 by changing their TCP listening ports as follows:
-
-| Channel | Default listening port | Configured listening port |
-| :------ | :--------------------- | :------------------------ |
-| CH1 | `502` | `10502` |
-| CH2 | `503` | `10503` |
+Only configure **CH1** by changing its TCP listening port to 10502.
 
 > **NOTE:**
-> - Leave CH3 and CH4 at their default values.
+> - Leave CH2, CH3, and CH4 at their default values.
 > - For details about channel settings, see [Section 4.2.3](#423-modbus-channels).
-
-<a id="561-screenshot-of-configuration-of-ch1"></a>
-#### 5.6.1 Screenshot of Configuration of CH1 [↑](#bookmarks "Back to Bookmarks")
 
 ![Device Console CH1 configuration example](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_ch1_example.png)
 
 1. Select **Settings**.
 2. Select **CH1**.
 3. Set **Channel 1 Listening Port** to `10502`.
-4. Select **Save**.
-
-<a id="562-screenshot-of-configuration-of-ch2"></a>
-#### 5.6.2 Screenshot of Configuration of CH2 [↑](#bookmarks "Back to Bookmarks")
-
-![Device Console CH2 configuration example](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_ch2_example.png)
-
-1. Select **Settings**.
-2. Select **CH2**.
-3. Set **Channel 2 Listening Port** to `10503`.
 4. Select **Save**.
 
 <br>
@@ -404,26 +388,21 @@ through the gateway and receive responses from the connected field devices.
 <a id="59-configure-tcp-to-modbus-test-software"></a>
 ### 5.9 Configure TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
 
-Configure the test software with the gateway's IP address, the TCP listening
-port for the required channel, and the Modbus unit ID of the RTU field device.
-For CH1, use port `502`.
+Configure **PowerHud Modbus Tester** with:
 
-The gateway forwards the following Modbus functions between the channel's TCP
-listening port and associated RS-485 bus:
+- Ethernet IP address: `192.168.1.40`
+- CH1 listening port: `10502`
+- BP#02 Device-ID: `1`
+- BP#02 Registry-Address-Range: `400 - 405`
+- BP#02 Function-Code: `03 - Read Holding Registers`
 
-| Function code | Function |
-| :------------ | :----------------------- |
-| `01` | Read Coils |
-| `02` | Read Discrete Inputs |
-| `03` | Read Holding Registers |
-| `04` | Read Input Registers |
-| `05` | Write Single Coil |
-| `06` | Write Single Register |
-| `10` | Write Multiple Registers |
+![PowerHud Modbus Tester configuration](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/powerhud_modbus_tester_config.png)
 
-> **IMPORTANT:** A Modbus write sent through the gateway changes the connected
-> field device. Enable and use write functions only for approved control points
-> and only when it is safe to change the device state.
+> **IMPORTANT:**
+> - Select the correct function code for the connected field device.
+> - A Modbus write sent through the gateway changes the field device;
+>   use write functions only for approved control points and only when it is
+>   safe to change the device state.
 
 
 <br>
@@ -453,12 +432,19 @@ with these values:
 | Start address | `0` |
 | Quantity | `1` |
 
-Confirm that the returned value matches the field device. The LCD indicates
-client connections and recent data activity for each channel.
+Confirm that the returned value matches the field device.
 
 > **NOTE:** Register numbering varies by Modbus device and client software.
 > Enter the address format required by the client and verify it against the
 > field device's register map.
+
+<br>
+
+<a id="512-lcd-status"></a>
+### 5.12 LCD Status [↑](#bookmarks "Back to Bookmarks")
+
+The LCD displays the Ethernet IP address, Wi-Fi IP address, and the connection
+status of CH1, CH2, CH3, and CH4.
 
 <br><br>
 
