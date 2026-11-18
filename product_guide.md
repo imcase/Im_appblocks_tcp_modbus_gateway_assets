@@ -275,7 +275,7 @@ documentation for the required power and communication connections.
 
 <br>
 
-![Connecting the BP#02 sensor to the TPP2W(G2)](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_with_double_9_terminals_bp02.png)
+![Connecting the BP#02 sensor to the TPP2W(G2)](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_with_double_9_terminals_bp02_rev2.png)
 
 
 <a id="52-connect-the-network-and-power"></a>
@@ -300,8 +300,8 @@ Using your preferred web browser, navigate to [http://192.168.1.40](http://192.1
 <a id="54-configure-network-in-general"></a>
 ### 5.4 Configure General [↑](#bookmarks "Back to Bookmarks")
 
-In the **General** group, configure the Ethernet connection for the local
-network.
+The Ethernet connection for the local network is configured in the
+**General** group.
 
 > **NOTE:**
 > - This example uses the default Ethernet configuration.
