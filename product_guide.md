@@ -33,10 +33,12 @@
   - [5.6 Configure Channels](#56-configure-channels)
     - [5.6.1 Screenshot of Configuration of CH1](#561-screenshot-of-configuration-of-ch1)
     - [5.6.2 Screenshot of Configuration of CH2](#562-screenshot-of-configuration-of-ch2)
-  - [5.7 Download TCP-to-Modbus Test Software](#57-download-tcp-to-modbus-test-software)
-  - [5.8 Configure Test Software](#58-configure-test-software)
-  - [5.9 Start Test Software](#59-start-test-software)
-  - [5.10 Check Result In Test Software](#510-check-result-in-test-software)
+  - [5.7 Reboot Device](#57-reboot-device)
+    - [5.7.1 Verify Wi-Fi Connection](#571-verify-wi-fi-connection)
+  - [5.8 Download TCP-to-Modbus Test Software](#58-download-tcp-to-modbus-test-software)
+  - [5.9 Configure TCP-to-Modbus Test Software](#59-configure-tcp-to-modbus-test-software)
+  - [5.10 Start TCP-to-Modbus Test Software](#510-start-tcp-to-modbus-test-software)
+  - [5.11 Check Result In TCP-to-Modbus Test Software](#511-check-result-in-tcp-to-modbus-test-software)
 - [6. Commissioning checklist](#6-commissioning-checklist)
 - [7. Troubleshooting](#7-troubleshooting)
 
@@ -367,10 +369,44 @@ Configure CH1 and CH2 by changing their TCP listening ports as follows:
 
 <br>
 
-<a id="57-download-tcp-to-modbus-test-software"></a>
-### 5.7 Download TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
+<a id="57-reboot-device"></a>
+### 5.7 Reboot Device [↑](#bookmarks "Back to Bookmarks")
 
-Download and install the TCP-to-Modbus test software before continuing.
+Restart the device so that the new configuration is applied. Allow up to
+20 seconds for the device to fully boot and become ready for use.
+
+> **NOTE:** For details about restarting the device, see
+> [Section 4.4.1](#441-commands).
+
+<a id="571-verify-wi-fi-connection"></a>
+#### 5.7.1 Verify Wi-Fi Connection [↑](#bookmarks "Back to Bookmarks")
+
+After the device has restarted, open the **Wi-Fi** group and select
+**Refresh**. Confirm that a Wi-Fi IP address is displayed.
+
+> **NOTE:** In addition to the Ethernet IP address (for example, `192.168.1.40`), the Wi-Fi IP address can
+> also be used to connect the TCP-to-Modbus test software.
+
+![Device Console Wi-Fi IP address after reboot](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_wifi_after_reboot_example.png)
+
+<br>
+
+<a id="58-download-tcp-to-modbus-test-software"></a>
+### 5.8 Download & Install TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
+
+In this example, **PowerHud Modbus Tester** is used to send Modbus requests
+through the gateway and receive responses from the connected field devices.
+
+> **Download location:** [modbustester.com](https://www.modbustester.com/).
+
+<br>
+
+<a id="59-configure-tcp-to-modbus-test-software"></a>
+### 5.9 Configure TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
+
+Configure the test software with the gateway's IP address, the TCP listening
+port for the required channel, and the Modbus unit ID of the RTU field device.
+For CH1, use port `502`.
 
 The gateway forwards the following Modbus functions between the channel's TCP
 listening port and associated RS-485 bus:
@@ -389,27 +425,19 @@ listening port and associated RS-485 bus:
 > field device. Enable and use write functions only for approved control points
 > and only when it is safe to change the device state.
 
-<br>
-
-<a id="58-configure-test-software"></a>
-### 5.8 Configure Test Software [↑](#bookmarks "Back to Bookmarks")
-
-Configure the test software with the gateway's IP address, the TCP listening
-port for the required channel, and the Modbus unit ID of the RTU field device.
-For CH1, use port `502`.
 
 <br>
 
-<a id="59-start-test-software"></a>
-### 5.9 Start Test Software [↑](#bookmarks "Back to Bookmarks")
+<a id="510-start-tcp-to-modbus-test-software"></a>
+### 5.10 Start TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
 
 Start the test software and connect to the configured gateway IP address and
 TCP port.
 
 <br>
 
-<a id="510-check-result-in-test-software"></a>
-### 5.10 Check Result In Test Software [↑](#bookmarks "Back to Bookmarks")
+<a id="511-check-result-in-tcp-to-modbus-test-software"></a>
+### 5.11 Check Result In TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
 
 For example, read one holding register at address `0` from unit ID `1` through
 CH1. The exact client command depends on the Modbus tool in use; configure it
