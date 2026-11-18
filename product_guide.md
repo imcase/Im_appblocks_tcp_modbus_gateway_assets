@@ -286,7 +286,7 @@ Then connect the supplied power adapter to the device. The device starts when
 power is connected. Allow up to 20 seconds for the device to fully boot and
 become ready for use.
 
-![Connecting the Ethernet cable and power adapter to the TPP2W(G2)](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_ethernet_power.png)
+![Connecting the Ethernet cable and power adapter to the TPP2W(G2)](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_ethernet_power_rev2.png)
 
 <br>
 
