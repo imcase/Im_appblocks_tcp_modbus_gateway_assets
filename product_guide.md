@@ -31,6 +31,8 @@
   - [5.4 Configure General](#54-configure-network-in-general)
   - [5.5 Configure Wi-Fi](#55-configure-wi-fi)
   - [5.6 Configure Channels](#56-configure-channels)
+    - [5.6.1 Screenshot of Configuration of CH1](#561-screenshot-of-configuration-of-ch1)
+    - [5.6.2 Screenshot of Configuration of CH2](#562-screenshot-of-configuration-of-ch2)
   - [5.7 Download TCP-to-Modbus Test Software](#57-download-tcp-to-modbus-test-software)
   - [5.8 Configure Test Software](#58-configure-test-software)
   - [5.9 Start Test Software](#59-start-test-software)
@@ -300,11 +302,11 @@ Using your preferred web browser, navigate to [http://192.168.1.40](http://192.1
 <a id="54-configure-network-in-general"></a>
 ### 5.4 Configure General [↑](#bookmarks "Back to Bookmarks")
 
-The Ethernet connection for the local network is configured in the
+The **Ethernet** connection for the local network is configured in the
 **General** group.
 
 > **NOTE:**
-> - This example uses the default Ethernet configuration.
+> - This example uses the **default** Ethernet configuration.
 > - If changes are required, see [Section 4.2.1](#421-general).
 
 <br>
@@ -312,23 +314,56 @@ The Ethernet connection for the local network is configured in the
 <a id="55-configure-wi-fi"></a>
 ### 5.5 Configure Wi-Fi [↑](#bookmarks "Back to Bookmarks")
 
-In the **Wi-Fi** group, configure the wireless connection as required for the
-installation.
+For this example, configure Wi-Fi by entering the SSID and password for the
+wireless network in the **Wi-Fi** group. Leave all other Wi-Fi settings at
+their default values.
 
 > **NOTE:**
-> - This Ethernet-based example leaves the default Wi-Fi configuration unchanged.
-> - If changes are required, see [Section 4.2.2](#422-wi-fi).
+> For details about Wi-Fi settings, see [Section 4.2.2](#422-wi-fi).
+
+![Device Console Wi-Fi configuration example](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_wifi_example.png)
+
+1. Select **Settings**.
+2. Select **Wi-Fi**.
+3. Enter the wireless network SSID.
+4. Enter the wireless network password.
+5. Select **Save**.
 
 <br>
 
 <a id="56-configure-channels"></a>
 ### 5.6 Configure Channels [↑](#bookmarks "Back to Bookmarks")
 
-Configure the required Modbus TCP-to-RTU channels for the installation.
+Configure CH1 and CH2 by changing their TCP listening ports as follows:
+
+| Channel | Default listening port | Configured listening port |
+| :------ | :--------------------- | :------------------------ |
+| CH1 | `502` | `10502` |
+| CH2 | `503` | `10503` |
 
 > **NOTE:**
-> - This example uses the default channel configuration.
-> - If changes are required, see [Section 4.2.3](#423-modbus-channels).
+> - Leave CH3 and CH4 at their default values.
+> - For details about channel settings, see [Section 4.2.3](#423-modbus-channels).
+
+<a id="561-screenshot-of-configuration-of-ch1"></a>
+#### 5.6.1 Screenshot of Configuration of CH1 [↑](#bookmarks "Back to Bookmarks")
+
+![Device Console CH1 configuration example](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_ch1_example.png)
+
+1. Select **Settings**.
+2. Select **CH1**.
+3. Set **Channel 1 Listening Port** to `10502`.
+4. Select **Save**.
+
+<a id="562-screenshot-of-configuration-of-ch2"></a>
+#### 5.6.2 Screenshot of Configuration of CH2 [↑](#bookmarks "Back to Bookmarks")
+
+![Device Console CH2 configuration example](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_ch2_example.png)
+
+1. Select **Settings**.
+2. Select **CH2**.
+3. Set **Channel 2 Listening Port** to `10503`.
+4. Select **Save**.
 
 <br>
 
