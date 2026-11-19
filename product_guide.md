@@ -423,6 +423,8 @@ Click **Connect** to start polling Modbus data.
 <a id="584-check-result"></a>
 #### 5.8.4 Check Result [↑](#bookmarks "Back to Bookmarks")
 
+Wait approximately 5 seconds, then check the polled Modbus data.
+
 <a id="5841-table"></a>
 ##### 5.8.4.1 Table [↑](#bookmarks "Back to Bookmarks")
 
@@ -431,7 +433,7 @@ Click **Connect** to start polling Modbus data.
 <a id="5842-livechart"></a>
 ##### 5.8.4.2 Live Chart [↑](#bookmarks "Back to Bookmarks")
 
-![PowerHud Modbus Tester live chart result](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/powerhud_modbus_tester_result_livechart.png)
+![PowerHud Modbus Tester live chart result](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/powerhud_modbus_tester_result_livechart_rev2.png)
 
 <br>
 
