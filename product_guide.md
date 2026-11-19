@@ -438,8 +438,8 @@ Click **Connect** to start polling Modbus data.
 <a id="59-lcd-status"></a>
 ### 5.9 LCD Status [↑](#bookmarks "Back to Bookmarks")
 
-The LCD displays the Ethernet IP address, Wi-Fi IP address, and the connection
-status of CH1, CH2, CH3, and CH4.
+The LCD displays the configured **Ethernet** IP address, **Wi-Fi** IP address, and the connection
+status of **CH1**, **CH2**, **CH3**, and **CH4**.
 
 ![TPP2W(G2) LCD status display](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_lcd_rev2.png)
 
@@ -450,21 +450,29 @@ status of CH1, CH2, CH3, and CH4.
 <a id="6-commissioning-checklist"></a>
 ## 6. Commissioning checklist [↑](#bookmarks "Back to Bookmarks")
 
-1. Install Tibbit #05 RS-485 interfaces in the required sockets.
-2. Wire the RS-485 buses and check polarity, termination, and biasing.
-3. Confirm the unit ID and serial baud rate of every RTU field device.
-4. Connect Ethernet and power the gateway, then obtain its IP address from the
-   LCD or DHCP server.
-5. Open the Device Console at `http://<device-ip>`.
-6. Configure Ethernet or Wi-Fi settings as required by the installation.
-7. Configure each required channel's unique TCP listening port and RTU baud
-   rate.
-8. Restart the gateway.
-9. Configure the Modbus TCP client with the gateway IP address, channel port,
-   and RTU device unit ID.
-10. Read a known register from each RTU device.
-11. Where safe, test the required write functions and verify the change at the
-    field device.
+1. Install and check the RS-485 wiring.
+2. Connect the Ethernet cable and power adapter. Wait for the device to boot.
+3. Open the Device Console at the device's current IP address.
+4. In **Device Console > Settings > General**, configure the Ethernet settings
+   required by the local network.
+5. In **Device Console > Settings > Wi-Fi**, configure the wireless network connection (if used).
+6. In **Device Console > Settings > CH1–CH4**, configure the required channel
+   listening ports and RTU settings.
+7. Restart the device to apply the network and channel settings.
+
+> **NOTE:**
+> - If Wi-Fi is configured, in **Device Console > Settings > Wi-Fi**, confirm
+>   that the displayed Wi-Fi IP address is correct.
+> - If the IP address is incorrect or has not updated, click **Refresh**.
+
+8. Gather the Modbus unit ID, function code, register range, data format, and
+   expected values from the field-device documentation.
+9. Configure the TCP-to-Modbus test software with the gateway IP address,
+    channel listening port, and the collected Modbus communication parameters.
+10. Start polling and confirm that the expected values are displayed in the
+    table or Live Chart.
+11. Confirm that the LCD shows the configured Ethernet IP address, Wi-Fi IP
+    address, and channel connection statuses.
 
 <br><br>
 
@@ -482,7 +490,6 @@ status of CH1, CH2, CH3, and CH4.
 | Modbus TCP request times out | Check RS-485 wiring and polarity, RTU baud rate, field-device power, unit ID, termination/biasing, and the selected channel/socket. |
 | Gateway returns a target-device failure exception | The RTU device did not reply before the gateway timeout. Check the serial bus and field-device configuration. |
 | Gateway returns a busy exception | Reduce request rate or retry the request. The gateway has a limited queue for pending TCP-to-RTU transactions. |
-| Read value is incorrect | Verify the function code, register address convention, unit ID, data type, scaling, and byte/word order in the field-device register map. |
-| Device requires parity or a different data-bit format | Firmware v1.0.7 operates its RTU channels with no parity. Use compatible field-device serial settings or obtain firmware that applies the required format. |
+| Read value is incorrect | Verify the function code, register address, unit ID, data type, scaling, and byte/word order in the field-device register map. |
 | Changed configuration does not take effect | Save the settings, then restart the gateway. |
 | MD button does not reset settings | This firmware assigns an audible indication to the MD button. Use the Device Console's **Initialize Settings** control instead. |
