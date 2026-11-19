@@ -441,7 +441,7 @@ Click **Connect** to start polling Modbus data.
 The LCD displays the Ethernet IP address, Wi-Fi IP address, and the connection
 status of CH1, CH2, CH3, and CH4.
 
-![TPP2W(G2) LCD status display](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_lcd.png)
+![TPP2W(G2) LCD status display](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_lcd_rev2.png)
 
 <br><br>
 
