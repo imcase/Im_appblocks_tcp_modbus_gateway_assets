@@ -366,12 +366,19 @@ Restart the device so that the new configuration is applied. Allow up to
 #### 5.7.1 Verify Wi-Fi Connection [↑](#bookmarks "Back to Bookmarks")
 
 After the device has restarted, open the **Wi-Fi** group and select
-**Refresh**. Confirm that a Wi-Fi IP address is displayed.
+**Refresh**. Confirm that a Wi-Fi IP address is displayed..
 
-> **NOTE:** In addition to the Ethernet IP address (for example, `192.168.1.40`), the Wi-Fi IP address can
-> also be used to connect the TCP-to-Modbus test software.
+![Device Console Wi-Fi IP address after reboot](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_wifi_after_reboot_example_rev2.png)
 
-![Device Console Wi-Fi IP address after reboot](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tcp_modbus_gateway_settings_wifi_after_reboot_example.png)
+1. Select **Settings**.
+2. Select **Wi-Fi**.
+3. Click **Refresh**.
+4. Check the Wi-Fi IP address.
+
+> **NOTE:** 
+> - If the Wi-Fi IP address has not changed, wait 5 seconds and click **Refresh** again.
+> - In addition to the Ethernet IP address (for example, `192.168.1.40`), the Wi-Fi IP address can
+> also be used to connect the TCP-to-Modbus test software
 
 <br>
 
