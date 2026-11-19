@@ -41,7 +41,7 @@
     - [5.8.3 Start Connection](#583-start-connection)
     - [5.8.4 Check Result](#584-check-result)
       - [5.8.4.1 Table](#5841-table)
-      - [5.8.4.2 Graph](#5842-graph)
+      - [5.8.4.2 Live Chart](#5842-livechart)
   - [5.9 LCD Status](#59-lcd-status)
 - [6. Commissioning checklist](#6-commissioning-checklist)
 - [7. Troubleshooting](#7-troubleshooting)
@@ -407,7 +407,7 @@ Configure **PowerHud Modbus Tester** with:
 - BP#02 Registry-Address-Range: `400 - 405`
 - BP#02 Function-Code: `03 - Read Holding Registers`
 
-![PowerHud Modbus Tester configuration](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/powerhud_modbus_tester_config.png)
+![PowerHud Modbus Tester configuration](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/powerhud_modbus_tester_config_rev2.png)
 
 > **IMPORTANT:**
 > - Select the correct function code for the connected field device.
@@ -426,28 +426,12 @@ Click **Connect** to start polling Modbus data.
 <a id="5841-table"></a>
 ##### 5.8.4.1 Table [↑](#bookmarks "Back to Bookmarks")
 
-For example, read one holding register at address `0` from unit ID `1` through
-CH1. The exact client command depends on the Modbus tool in use; configure it
-with these values:
+![PowerHud Modbus Tester table result](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/powerhud_modbus_tester_result_table.png)
 
-| Client setting | Example value |
-| --- | --- |
-| Protocol | Modbus TCP |
-| Gateway IP address | `<device-ip>` |
-| TCP port | `502` |
-| Unit ID | `1` |
-| Function | Read Holding Registers (`03`) |
-| Start address | `0` |
-| Quantity | `1` |
+<a id="5842-livechart"></a>
+##### 5.8.4.2 Live Chart [↑](#bookmarks "Back to Bookmarks")
 
-Confirm that the returned value matches the field device.
-
-> **NOTE:** Register numbering varies by Modbus device and client software.
-> Enter the address format required by the client and verify it against the
-> field device's register map.
-
-<a id="5842-graph"></a>
-##### 5.8.4.2 Graph [↑](#bookmarks "Back to Bookmarks")
+![PowerHud Modbus Tester live chart result](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/powerhud_modbus_tester_result_livechart.png)
 
 <br>
 
@@ -456,6 +440,8 @@ Confirm that the returned value matches the field device.
 
 The LCD displays the Ethernet IP address, Wi-Fi IP address, and the connection
 status of CH1, CH2, CH3, and CH4.
+
+![TPP2W(G2) LCD status display](https://raw.githubusercontent.com/imcase/Im_appblocks_tcp_modbus_gateway_assets/refs/heads/main/assets/tpp2wg2_lcd.png)
 
 <br><br>
 
