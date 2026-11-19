@@ -35,11 +35,14 @@
     - [5.6.2 Screenshot of Configuration of CH2](#562-screenshot-of-configuration-of-ch2)
   - [5.7 Reboot Device](#57-reboot-device)
     - [5.7.1 Verify Wi-Fi Connection](#571-verify-wi-fi-connection)
-  - [5.8 Download TCP-to-Modbus Test Software](#58-download-tcp-to-modbus-test-software)
-  - [5.9 Configure TCP-to-Modbus Test Software](#59-configure-tcp-to-modbus-test-software)
-  - [5.10 Start TCP-to-Modbus Test Software](#510-start-tcp-to-modbus-test-software)
-  - [5.11 Check Result In TCP-to-Modbus Test Software](#511-check-result-in-tcp-to-modbus-test-software)
-  - [5.12 LCD Status](#512-lcd-status)
+  - [5.8 TCP-to-Modbus Test Software](#58-tcp-to-modbus-test-software)
+    - [5.8.1 Download and Install](#581-download-and-install)
+    - [5.8.2 Configuration](#582-configuration)
+    - [5.8.3 Start Connection](#583-start-connection)
+    - [5.8.4 Check Result](#584-check-result)
+      - [5.8.4.1 Table](#5841-table)
+      - [5.8.4.2 Graph](#5842-graph)
+  - [5.9 LCD Status](#59-lcd-status)
 - [6. Commissioning checklist](#6-commissioning-checklist)
 - [7. Troubleshooting](#7-troubleshooting)
 
@@ -382,18 +385,19 @@ After the device has restarted, open the **Wi-Fi** group and select
 
 <br>
 
-<a id="58-download-tcp-to-modbus-test-software"></a>
-### 5.8 Download & Install TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
+<a id="58-tcp-to-modbus-test-software"></a>
+### 5.8 TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
+
+<a id="581-download-and-install"></a>
+#### 5.8.1 Download and Install [↑](#bookmarks "Back to Bookmarks")
 
 In this example, **PowerHud Modbus Tester** is used to send Modbus requests
 through the gateway and receive responses from the connected field devices.
 
 > **Download location:** [modbustester.com](https://www.modbustester.com/).
 
-<br>
-
-<a id="59-configure-tcp-to-modbus-test-software"></a>
-### 5.9 Configure TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
+<a id="582-configuration"></a>
+#### 5.8.2 Configuration [↑](#bookmarks "Back to Bookmarks")
 
 Configure **PowerHud Modbus Tester** with:
 
@@ -411,19 +415,16 @@ Configure **PowerHud Modbus Tester** with:
 >   use write functions only for approved control points and only when it is
 >   safe to change the device state.
 
+<a id="583-start-connection"></a>
+#### 5.8.3 Start Connection [↑](#bookmarks "Back to Bookmarks")
 
-<br>
+Click **Connect** to start polling Modbus data.
 
-<a id="510-start-tcp-to-modbus-test-software"></a>
-### 5.10 Start TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
+<a id="584-check-result"></a>
+#### 5.8.4 Check Result [↑](#bookmarks "Back to Bookmarks")
 
-Start the test software and connect to the configured gateway IP address and
-TCP port.
-
-<br>
-
-<a id="511-check-result-in-tcp-to-modbus-test-software"></a>
-### 5.11 Check Result In TCP-to-Modbus Test Software [↑](#bookmarks "Back to Bookmarks")
+<a id="5841-table"></a>
+##### 5.8.4.1 Table [↑](#bookmarks "Back to Bookmarks")
 
 For example, read one holding register at address `0` from unit ID `1` through
 CH1. The exact client command depends on the Modbus tool in use; configure it
@@ -445,10 +446,13 @@ Confirm that the returned value matches the field device.
 > Enter the address format required by the client and verify it against the
 > field device's register map.
 
+<a id="5842-graph"></a>
+##### 5.8.4.2 Graph [↑](#bookmarks "Back to Bookmarks")
+
 <br>
 
-<a id="512-lcd-status"></a>
-### 5.12 LCD Status [↑](#bookmarks "Back to Bookmarks")
+<a id="59-lcd-status"></a>
+### 5.9 LCD Status [↑](#bookmarks "Back to Bookmarks")
 
 The LCD displays the Ethernet IP address, Wi-Fi IP address, and the connection
 status of CH1, CH2, CH3, and CH4.
